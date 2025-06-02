@@ -1,0 +1,2 @@
+class MaillotsController < ApplicationController
+end
