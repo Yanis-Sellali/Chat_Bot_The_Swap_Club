@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :maillots
+  get  "/ask", to: "questions#new"
+  post "/ask", to: "questions#create"
+
 end

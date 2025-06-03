@@ -1,2 +1,8 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container mt-5 text-center">
+  <h1 class="display-4 mb-4">Bienvenue sur Maillot AI</h1>
+  <p class="lead mb-5">
+    Pose une question sur un maillot de foot, une année, un joueur…<br />
+    Notre intelligence artificielle te répond instantanément.
+  </p>
+  <%= link_to "Poser une question", ask_path, class: "btn btn-primary btn-lg" %>
+</div>

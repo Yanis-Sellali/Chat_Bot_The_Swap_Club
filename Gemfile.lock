@@ -6,6 +6,13 @@ GIT
       actionpack (>= 5.2)
       activemodel (>= 5.2)
 
+GIT
+  remote: https://github.com/openai/openai-ruby.git
+  revision: 7e2e96b2bf64798158d3ecbfcdfac61c32ec5c06
+  specs:
+    openai (0.5.1)
+      connection_pool
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -341,6 +348,7 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
+  openai!
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.5, >= 7.1.5.1)
