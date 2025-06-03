@@ -1,10 +1,10 @@
 <div class="container mt-5" style="max-width: 700px;">
   <h1 class="text-center mb-4">Poser une question à l'IA</h1>
 
-  <%= form_with url: ask_path, method: :post, local: true do |form| %>
+  <%= form_with url: questions_path, method: :post, local: true do |form| %>
     <div class="mb-3">
       <%= form.label :question, "Votre question", class: "form-label" %>
-      <%= form.text_area :question, class: "form-control", rows: 4, required: true, placeholder: "Exemple : Quel est l’histoire du maillot de 1998 ?" %>
+      <%= form.text_area :question, class: "form-control", rows: 4, required: true, placeholder: "Exemple : Quel est l’histoire du jersey de 1998 ?", value: @question %>
     </div>
     <div class="d-grid">
       <%= form.submit "Envoyer", class: "btn btn-primary btn-lg" %>
