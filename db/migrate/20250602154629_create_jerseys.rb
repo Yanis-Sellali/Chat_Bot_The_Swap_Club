@@ -1,6 +1,6 @@
-class CreateMaillots < ActiveRecord::Migration[7.1]
+class CreateJerseys < ActiveRecord::Migration[7.1]
   def change
-    create_table :maillots do |t|
+    create_table :jerseys do |t|
       t.string :name
       t.string :team
       t.string :flocking

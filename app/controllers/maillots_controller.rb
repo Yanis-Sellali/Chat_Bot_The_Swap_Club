@@ -1,2 +1,0 @@
-class MaillotsController < ApplicationController
-end
