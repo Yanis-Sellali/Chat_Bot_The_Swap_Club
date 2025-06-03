@@ -1,0 +1,19 @@
+<div class="container mt-5" style="max-width: 700px;">
+  <h1 class="text-center mb-4">Poser une question à l'IA</h1>
+
+  <% @chat.messages.each do |message| %>
+    <%= message.role %>
+    <%= message.content %>
+  <% end %>
+
+  <%= form_with url: [@chat, @message], method: :post, local: true do |form| %>
+    <div class="mb-3">
+      <%= form.label :content, "Votre question", class: "form-label" %>
+      <%= form.text_area :content, class: "form-control", rows: 4, required: true, placeholder: "Exemple : Quel est l’histoire du jersey de 1998 ?", value: @question %>
+    </div>
+    <div class="d-grid">
+      <%= form.submit "Envoyer", class: "btn btn-primary btn-lg" %>
+    </div>
+  <% end %>
+
+</div>

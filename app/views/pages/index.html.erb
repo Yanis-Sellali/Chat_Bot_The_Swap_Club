@@ -1,2 +1,8 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container mt-5 text-center">
+  <h1 class="display-4 mb-4">Bienvenue sur jersey AI</h1>
+  <p class="lead mb-5">
+    Pose une question sur un jersey de foot, une année, un joueur…<br />
+    Notre intelligence artificielle te répond instantanément.
+  </p>
+  <%= button_to "Poser une question", chats_path, method: :post, class: "btn btn-primary btn-lg" %>
+</div>

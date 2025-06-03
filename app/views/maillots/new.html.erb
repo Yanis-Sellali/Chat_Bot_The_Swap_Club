@@ -1,0 +1,20 @@
+<h1>Ajouter un nouveau jersey</h1>
+
+<%= form_with model: @jersey, local: true do |form| %>
+  <div class="mb-3">
+    <%= form.label :nom %>
+    <%= form.text_field :nom, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :annee %>
+    <%= form.text_field :annee, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :image_url %>
+    <%= form.text_field :image_url, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Créer le jersey", class: "btn btn-primary" %>
+<% end %>
