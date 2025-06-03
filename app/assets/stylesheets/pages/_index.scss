@@ -1,2 +1,81 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), image-url("background-banner.png");
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+  h1, p {
+    margin: 0;
+    color: white;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 20px;
+    opacity: 0.8;
+  }
+
+  // Responsive padding
+  @media (max-width: 576px) {
+    padding: 80px 20px;
+    h1 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Animation classes
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.3s;
+}
+
+.delay-2 {
+  animation-delay: 0.6s;
+}
+
+.footer {
+  background: #F4F4F4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0px 50px;
+  color: rgba(0,0,0,0.3);
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+.footer-links a {
+  color: black;
+  opacity: 0.15;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 0px 10px;
+}
+.footer-links a:hover {
+  opacity: 1;
+}
