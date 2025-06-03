@@ -3,19 +3,25 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 # Example:
+User.destroy_all
+Jersey.destroy_all
+
+
 user1 = User.create!(
-nom: "David B",
+name: "David B",
 email: "david.b@example.com",
-localisation: "Paris"
+password: "password",
+address: "Paris"
 )
 
 user2 = User.create!(
-nom: "Clarence S"
+name: "Clarence S",
 email: "clarence@example.com",
-localisation: "Milan"
+password: "password",
+address: "Milan"
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot Domicile 2022",
 team: "Paris Saint-Germain",
 flocking: "Mbappé 7",
@@ -25,17 +31,17 @@ image: "",
 user: user1
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot Coupe du monde 1998",
 team: "France",
 flocking: "Zidane 10",
 year: 1998,
 description: "Maillot domicile de l’équipe de France durant la Coupe du Monde 1998.",
-image: “” ,
+image: "",
 user: user2
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot Coupe du monde 1998",
 team: "France",
 flocking: "Henry 12",
@@ -45,7 +51,7 @@ image: "",
 user: user2
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot Domicile 2025",
 team: "Paris Saint-Germain",
 flocking: "Dembélé 10",
@@ -55,7 +61,7 @@ image: "",
 user: user1
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot domicile 1981",
 team: "Paris Saint-Germain",
 year: 1981,
@@ -64,7 +70,7 @@ image: "",
 user: user1
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot Domicile 2001",
 team: "Paris Saint-Germain",
 flocking: "Ronaldinho 21",
@@ -74,7 +80,7 @@ image: "",
 user: user1
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot Domicile 1995-1996",
 team: "Paris Saint-Germain",
 year: 1995,
@@ -83,7 +89,7 @@ image: "",
 user: user1
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot exterieur 2006:2007",
 team: "Paris Saint-Germain",
 year: 2006,
@@ -92,7 +98,7 @@ image: "",
 user: user1
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot exterieur 2006/2007",
 team: "Paris Saint-Germain",
 year: 2006,
@@ -101,7 +107,7 @@ image: "",
 user: user1
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot domicile 1994-95",
 team: "Paris Saint-Germain",
 year: 1994,
@@ -110,7 +116,7 @@ image: "",
 user: user1
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot Domicile 2007/2008",
 team: "Paris Saint-Germain",
 flocking: "Pauleta 9",
@@ -120,7 +126,7 @@ image: "",
 user: user1
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot domicile coupe du monde 2006",
 team: "Equipe de France",
 flocking: "Ribéry 22",
@@ -130,7 +136,7 @@ image: "",
 user: user2
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot domicile Euro 2000",
 team: "Equipe de France",
 flocking: "Trezeguet 20",
@@ -140,7 +146,7 @@ image: "",
 user: user2
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot domicile 1982",
 team: "Equipe de France",
 year: 1982,
@@ -149,7 +155,7 @@ image: "",
 user: user2
 )
 
-Maillot.create!(
+Jersey.create!(
 name: "Maillot domicile coupe du monde 2018",
 team: "Equipe de France",
 year: 2018,
