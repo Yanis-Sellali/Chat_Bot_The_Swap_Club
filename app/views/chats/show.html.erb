@@ -5,7 +5,7 @@
     <% @chat.messages.each do |message| %>
       <div class="chat-message <%= message.role == "user" ? "from-user" : "from-ai" %> animate-fade-in mb-3 p-3 rounded shadow-sm">
         <strong><%= message.role.capitalize %> :</strong><br />
-        <%= simple_format(message.content) %>
+        <%= markdown(message.content) %>
       </div>
     <% end %>
   </div>
