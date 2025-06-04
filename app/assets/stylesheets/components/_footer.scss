@@ -1,0 +1,15 @@
+.footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  small {
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+
+  small:hover {
+    opacity: 1;
+  }
+}
