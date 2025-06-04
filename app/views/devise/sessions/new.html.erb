@@ -1,5 +1,5 @@
 
-<div class="login-card">
+<div class="login-card container">
   <h2 class="text-center mb-4">Connexion</h2>
 
   <%= form_with(scope: :user, url: session_path(:user), local: true) do |f| %>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="d-grid">
-      <%= f.submit "Se connecter", class: "btn btn-primary" %>
+      <%= f.submit "Se connecter", class: "btn btn-dark btn-lg" %>
     </div>
   <% end %>
 
