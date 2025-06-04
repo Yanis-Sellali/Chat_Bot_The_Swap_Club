@@ -1,19 +1,22 @@
-<div class="container mt-5" style="max-width: 700px;">
-  <h1 class="text-center mb-4">Poser une question à l'IA</h1>
+<div class="ai-chat-box container my-5">
+  <h1 class="text-center mb-4">TheSwapClub AI</h1>
 
-  <% @chat.messages.each do |message| %>
-    <%= message.role %>
-    <%= message.content %>
-  <% end %>
+  <div class="chat-thread mb-5">
+    <% @chat.messages.each do |message| %>
+      <div class="chat-message <%= message.role == "user" ? "from-user" : "from-ai" %> animate-fade-in mb-3 p-3 rounded shadow-sm">
+        <strong><%= message.role.capitalize %> :</strong><br />
+        <%= simple_format(message.content) %>
+      </div>
+    <% end %>
+  </div>
 
   <%= form_with url: [@chat, @message], method: :post, local: true do |form| %>
-    <div class="mb-3">
-      <%= form.label :content, "Votre question", class: "form-label" %>
-      <%= form.text_area :content, class: "form-control", rows: 4, required: true, placeholder: "Exemple : Quel est l’histoire du jersey de 1998 ?", value: @question %>
+    <div class="mb-4">
+      <%= form.label :content, "Posez votre question :", class: "form-label fw-semibold" %>
+      <%= form.text_area :content, class: "form-control shadow-sm", rows: 4, required: true, placeholder: "Exemple : Quel est l’histoire du jersey de 1998 ?", value: @question %>
     </div>
     <div class="d-grid">
-      <%= form.submit "Envoyer", class: "btn btn-primary btn-lg" %>
+      <%= form.submit "Envoyer", class: "btn btn-dark btn-lg animate-in delay-2" %>
     </div>
   <% end %>
-
 </div>
