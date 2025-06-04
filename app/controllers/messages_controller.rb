@@ -12,15 +12,23 @@ class MessagesController < ApplicationController
 
   def create
     @chat = Chat.find(params[:chat_id])
-    @message = Message.new(role: "user", content: params[:content], chat: @chat)
+    @message = Message.new(message_params.merge(role: "user", chat: @chat))
     if @message.save
       chat = RubyLLM.chat(model: "gpt-4.1")
       @llm_chat = chat.with_instructions(SYSTEM_PROMPT)
-      response = @llm_chat.ask(@message.content)
+      if @message.image.attached?
+      response = @llm_chat.ask(@message.content, with: {image: @message.image.url})
+      end
       Message.create(role: "assistant", content: response.content, chat: @chat)
       redirect_to chat_path(@chat)
     else
-      render :new
+      flash[:alert] = @message.errors.full_messages.join(', ')
+      redirect_to chat_path(@chat)
     end
+  end
+
+  private
+  def message_params
+    params.require(:message).permit(:content, :image)
   end
 end

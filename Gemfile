@@ -42,7 +42,7 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
-
+gem 'active_storage_validations'
 gem "bootstrap", "~> 5.2"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
@@ -51,6 +51,8 @@ gem "sassc-rails"
 gem "ruby_llm"
 gem "devise"
 gem "redcarpet"
+gem 'cloudinary'
+gem 'image_processing',"~> 1.2"
 group :development, :test do
   gem "dotenv-rails"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
