@@ -5,20 +5,28 @@
   padding: 2rem;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  margin: 2rem auto;
+  animation: fadeInUp 0.5s ease;
+
 }
 
-.form-control:focus {
-  box-shadow: none;
-  border-color: #6c63ff;
+h2 {
+  font-weight: bold;
 }
 
-.btn-primary {
-  background-color: #6c63ff;
-  border-color: #6c63ff;
+.alert {
+  font-size: 0.9rem;
+  padding: 0.75rem;
 }
 
-.btn-primary:hover {
-  background-color: #5848e5;
-  border-color: #5848e5;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

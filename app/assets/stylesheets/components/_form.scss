@@ -1,0 +1,26 @@
+.form-label {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.form-control {
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ced4da;
+
+  &:focus {
+    border-color: #343a40;
+    box-shadow: none;
+  }
+}
+
+.form-check-label {
+  font-size: 0.9rem;
+}
+
+.btn {
+  border-radius: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}

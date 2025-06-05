@@ -1,5 +1,5 @@
-<div class="login-card container">
-  <h2 class="text-center mb-4">Réinitialiser le mot de passe</h2>
+<div class="login-card container my-5 p-4 shadow-sm bg-white rounded">
+  <h2 class="text-center mb-4 fw-semibold">Réinitialiser le mot de passe</h2>
 
   <%= form_with(url: password_path(resource_name), scope: resource_name, local: true) do |f| %>
     <% if flash.alert %>
@@ -9,7 +9,7 @@
     <% end %>
 
     <div class="mb-3">
-      <%= f.label :email, "Adresse email", class: "form-label" %>
+      <%= f.label :email, "Adresse email", class: "form-label fw-semibold" %>
       <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "ex: jean@email.com" %>
     </div>
 
@@ -18,7 +18,7 @@
     </div>
   <% end %>
 
-  <div class="mt-3 text-center">
-    <small><%= link_to "Retour à la connexion", new_session_path(resource_name) %></small>
+  <div class="mt-4 text-center small">
+    <small><%= link_to "Retour à la connexion", new_session_path(resource_name), class: "text-decoration-none" %></small>
   </div>
 </div>
