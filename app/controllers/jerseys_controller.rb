@@ -14,10 +14,11 @@ class JerseysController < ApplicationController
 
   def create
     @jersey = Jersey.new(jersey_params)
-    @jersey.description = RubyLLM.chat.ask("Décris ce jersey de football : #{@jersey.nom} #{@jersey.annee}").content
+    puts "Nom: #{@jersey.name}, Année: #{@jersey.year}"
+    @jersey.description = RubyLLM.chat.ask("Décris ce jersey de football : #{@jersey.name} #{@jersey.year}").content
 
     if @jersey.save
-      redirect_to @jersey
+      redirect_to jersey_path(@jersey)
     else
       render :new
     end
@@ -26,6 +27,6 @@ class JerseysController < ApplicationController
   private
 
   def jersey_params
-    params.require(:jersey).permit(:name, :year, :image)
+    params.require(:jersey).permit(:name, :year, :team, :image)
   end
 end
