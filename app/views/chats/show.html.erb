@@ -2,16 +2,16 @@
   <h1 class="text-center mb-4">TheSwapClub AI</h1>
 
   <% if flash[:alert] %>
-    <div class="alert alert-danger">
+    <div class="alert alert-danger shadow-sm">
       <%= flash[:alert] %>
     </div>
   <% end %>
 
   <div class="chat-thread mb-5" id="chat-thread">
     <% @chat.messages.each do |message| %>
-      <div class="chat-message <%= message.role == "user" ? "from-user" : "from-ai" %> animate-fade-in mb-3 p-3 rounded shadow-sm">
-        <strong><%= message.role.capitalize %> :</strong><br />
-        <%= markdown(message.content) %>
+      <div class="chat-message <%= message.role == "user" ? "from-user" : "from-ai" %> mb-3 p-3 rounded shadow-sm animate-fade-in">
+        <div class="fw-semibold mb-1 small"><%= message.role %> :</div>
+        <div class="message-content"><%= markdown(message.content) %></div>
         <% if message.image.attached? %>
           <div class="mt-3">
             <%= cl_image_tag message.image.key, class: "img-fluid rounded shadow-sm" %>
