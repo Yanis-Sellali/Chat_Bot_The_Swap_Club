@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   post :generate_ad_from_image, on: :member
   resources :messages, only: [:create]
   end
-
+  
+  get 'teams/index'
+  
   devise_for :users
   root to: "pages#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -15,9 +17,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :jerseys, only: [:new, :create, :show]
+  resources :jerseys, only: [:index, :new, :create, :show]
   resources :chats, only: [:create, :show] do
-    resources :messages, only: [:new, :create, :show]
+  resources :messages, only: [:new, :create, :show]
   end
-
+  resources :teams
 end

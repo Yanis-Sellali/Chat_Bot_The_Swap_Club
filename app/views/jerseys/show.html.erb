@@ -1,0 +1,14 @@
+<h1><%= @jersey.name %> (<%= @jersey.year %>)</h1>
+
+<p><strong>Équipe :</strong> <%= @jersey.team %></p>
+
+<p><strong>Description :</strong> <%= @jersey.description || "Pas de description" %></p>
+
+<% if @jersey.image.attached? %>
+  <%= image_tag @jersey.image, class: "img-fluid" %>
+<% elsif @jersey.image_url.present? %>
+  <%= image_tag @jersey.image_url, class: "img-fluid" %>
+<% end %>
+
+<%= link_to "Retour à la liste", jerseys_path, class: "btn btn-secondary mt-3" %>
+

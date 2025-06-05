@@ -1,0 +1,21 @@
+<h1>Liste des Maillots</h1>
+
+<%= link_to "Ajouter un nouveau maillot", new_jersey_path, class: "btn btn-success mb-3" %>
+
+<div class="row">
+  <% @jerseys.each do |jersey| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <% if jersey.image.attached? %>
+          <%= image_tag jersey.image, class: "card-img-top", style: "height: 300px; object-fit: cover;" %>
+        <% else %>
+          <%= image_tag "https://via.placeholder.com/300x200", class: "card-img-top", alt: "Placeholder" %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= jersey.name %> (<%= jersey.year %>)</h5>
+          <%= link_to "Voir le détail", jersey_path(jersey), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
