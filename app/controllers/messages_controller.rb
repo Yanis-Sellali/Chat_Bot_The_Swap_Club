@@ -13,15 +13,18 @@ class MessagesController < ApplicationController
   def create
     @chat = Chat.find(params[:chat_id])
     @message = Message.new(message_params.merge(role: "user", chat: @chat))
+
     if @message.save
       chat = RubyLLM.chat(model: "gpt-4.1")
       @llm_chat = chat.with_instructions(SYSTEM_PROMPT)
+
       if @message.image.attached?
-      response = @llm_chat.ask(@message.content, with: {image: @message.image.url})
+        response = @llm_chat.ask(@message.content, with: {image: @message.image.url})
       else
-      response = @llm_chat.ask(@message.content)
+        response = @llm_chat.ask(@message.content)
       end
-      Message.create(role: "assistant", content: response.content, chat: @chat)
+
+      Message.create(role: "assistant", content: response.content, chat: @chat, input_tokens: response.input_tokens, output_tokens: response.output_tokens)
       redirect_to chat_path(@chat)
     else
       flash[:alert] = @message.errors.full_messages.join(', ')
@@ -30,6 +33,7 @@ class MessagesController < ApplicationController
   end
 
   private
+
   def message_params
     params.require(:message).permit(:content, :image)
   end
