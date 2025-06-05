@@ -26,6 +26,6 @@ class JerseysController < ApplicationController
   private
 
   def jersey_params
-    params.require(:jersey).permit(:nom, :annee, :image_url)
+    params.require(:jersey).permit(:name, :year, :image)
   end
 end
