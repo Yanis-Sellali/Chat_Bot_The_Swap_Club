@@ -1,14 +1,25 @@
-<h1><%= @jersey.name %> (<%= @jersey.year %>)</h1>
+<div class="container my-5">
+  <div class="jersey-show-card bg-white shadow rounded p-4 mx-auto" style="max-width: 700px;">
+    <h1 class="mb-4 text-center">
+      <%= @jersey.name %> (<%= @jersey.year %>)
+    </h1>
 
-<p><strong>Équipe :</strong> <%= @jersey.team %></p>
+    <p><strong>Équipe :</strong> <%= @jersey.team %></p>
 
-<p><strong>Description :</strong> <%= @jersey.description || "Pas de description" %></p>
+    <p><strong>Description :</strong> <%= @jersey.description.presence || "Pas de description" %></p>
 
-<% if @jersey.image.attached? %>
-  <%= image_tag @jersey.image, class: "img-fluid" %>
-<% elsif @jersey.image_url.present? %>
-  <%= image_tag @jersey.image_url, class: "img-fluid" %>
-<% end %>
+    <% if @jersey.image.attached? %>
+      <div class="text-center my-4">
+        <%= image_tag @jersey.image, class: "img-fluid rounded shadow-sm" %>
+      </div>
+    <% elsif @jersey.image_url.present? %>
+      <div class="text-center my-4">
+        <%= image_tag @jersey.image_url, class: "img-fluid rounded shadow-sm" %>
+      </div>
+    <% end %>
 
-<%= link_to "Retour à la liste", jerseys_path, class: "btn btn-secondary mt-3" %>
-
+    <div class="text-center mt-4">
+      <%= link_to "Retour à la liste", jerseys_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>
