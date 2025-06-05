@@ -17,6 +17,9 @@ class MessagesController < ApplicationController
     if @message.save
       chat = RubyLLM.chat(model: "gpt-4.1")
       @llm_chat = chat.with_instructions(SYSTEM_PROMPT)
+      @chat.messages.each do |message|
+         @llm_chat.add_message(message)
+      end
 
       if @message.image.attached?
         response = @llm_chat.ask(@message.content, with: {image: @message.image.url})
