@@ -7,7 +7,7 @@
     </div>
   <% end %>
 
-  <div class="chat-thread mb-5">
+  <div class="chat-thread mb-5" id="chat-thread">
     <% @chat.messages.each do |message| %>
       <div class="chat-message <%= message.role == "user" ? "from-user" : "from-ai" %> animate-fade-in mb-3 p-3 rounded shadow-sm">
         <strong><%= message.role.capitalize %> :</strong><br />
@@ -20,6 +20,12 @@
       </div>
     <% end %>
   </div>
+
+  <% if Rails.env.development? %>
+  <span class="float-end">
+    Input tokens: <%= @input_tokens %> / Output tokens: <%= @output_tokens %> / Context window: <%= @context_window %>
+  </span>
+  <% end %>
 
   <%= form_with scope: :message, url: [@chat, Message.new], method: :post, local: true, html: { multipart: true } do |form| %>
     <div class="mb-4">
@@ -37,3 +43,12 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener("turbo:load", () => {
+    const lastMessage = document.querySelector(".chat-thread .chat-message:last-child");
+    if (lastMessage) {
+      lastMessage.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+</script>
