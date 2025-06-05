@@ -6,7 +6,11 @@
   <% @jerseys.each do |jersey| %>
     <div class="col-md-4 mb-4">
       <div class="card">
-        <img src="<%= jersey.image_url %>" class="card-img-top" alt="<%= jersey.name %>">
+        <% if jersey.image.attached? %>
+          <%= image_tag jersey.image, class: "card-img-top", style: "height: 300px; object-fit: cover;" %>
+        <% else %>
+          <%= image_tag "https://via.placeholder.com/300x200", class: "card-img-top", alt: "Placeholder" %>
+        <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= jersey.name %> (<%= jersey.year %>)</h5>
           <%= link_to "Voir le détail", jersey_path(jersey), class: "btn btn-primary" %>

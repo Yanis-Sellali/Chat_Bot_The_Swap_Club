@@ -1,20 +1,25 @@
-<h1>Ajouter un nouveau jersey</h1>
+<h1>Ajouter un nouveau maillot</h1>
 
-<%= form_with model: @jersey, local: true do |form| %>
+<%= form_with model: @jersey, local: true, data: { turbo: false } do |form| %>
   <div class="mb-3">
-    <%= form.label :nom %>
-    <%= form.text_field :nom, class: "form-control" %>
+    <%= form.label :name, "Nom du maillot" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :annee %>
-    <%= form.text_field :annee, class: "form-control" %>
+    <%= form.label :year, "Année" %>
+    <%= form.number_field :year, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :image_url %>
-    <%= form.text_field :image_url, class: "form-control" %>
+    <%= form.label :team, "Équipe" %>
+    <%= form.text_field :team, class: "form-control" %>
   </div>
 
-  <%= form.submit "Créer le jersey", class: "btn btn-primary" %>
+  <div class="mb-3">
+    <%= form.label :image, "Image du maillot" %>
+    <%= form.file_field :image, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Créer le maillot", class: "btn btn-primary" %>
 <% end %>
