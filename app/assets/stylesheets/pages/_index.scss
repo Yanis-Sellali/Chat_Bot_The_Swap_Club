@@ -7,6 +7,8 @@
   background-position: center;
   padding: 250px 0;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  min-height: 100vh;
+  width: 100%;
 
   h1, p {
     margin: 0;
@@ -55,4 +57,3 @@
 .delay-2 {
   animation-delay: 0.6s;
 }
-

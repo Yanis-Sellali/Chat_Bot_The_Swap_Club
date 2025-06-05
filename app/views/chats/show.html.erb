@@ -7,57 +7,65 @@
     </div>
   <% end %>
 
+  <!-- Fil de discussion -->
   <div class="chat-thread mb-5" id="chat-thread">
-<% @chat.messages.each_with_index do |message, index| %>
-  <div class="chat-message <%= message.role == "user" ? "from-user" : "from-ai" %> animate-fade-in mb-3 p-3 rounded shadow-sm">
-    <div class="fw-semibold mb-1 small"><%= message.role.capitalize %> :</div>
-    <div class="message-content"><%= markdown(message.content) %></div>
+    <% @chat.messages.each_with_index do |message, index| %>
+      <div class="chat-message <%= message.role == "user" ? "from-user" : "from-ai" %> animate-fade-in mb-3 p-3 rounded shadow-sm">
+        <div class="fw-semibold mb-1 small"><%= message.role.capitalize %> :</div>
+        <div class="message-content"><%= markdown(message.content) %></div>
 
-    <% if message.image.attached? %>
-      <div class="mt-3">
-        <%= cl_image_tag message.image.key, class: "img-fluid rounded shadow-sm" %>
-      </div>
-    <% end %>
+        <% if message.image.attached? %>
+          <div class="mt-3">
+            <%= cl_image_tag message.image.key, class: "img-fluid rounded shadow-sm" %>
+          </div>
+        <% end %>
 
-    <% if message.role == "assistant" && index > 0 && @chat.messages[index - 1].image.attached? %>
-      <div class="mt-3">
-        <%= button_to "Créer une annonce",
-          generate_ad_from_image_chat_path(message.chat, image_message_id: @chat.messages[index - 1].id),
-          method: :post,
-          class: "btn btn-primary" %>
+        <% if message.role == "assistant" && index.positive? && @chat.messages[index - 1].image.attached? %>
+          <div class="mt-3">
+            <%= button_to "Créer une annonce",
+              generate_ad_from_image_chat_path(message.chat, image_message_id: @chat.messages[index - 1].id),
+              method: :post,
+              class: "btn btn-dark btn-lg animate-in delay-2" %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
-<% end %>
 
-  <% if Rails.env.development? %>
-  <span class="float-end">
-    Input tokens: <%= @input_tokens %> / Output tokens: <%= @output_tokens %> / Context window: <%= @context_window %>
-  </span>
-  <% end %>
-
-  <%= form_with scope: :message, url: [@chat, Message.new], method: :post, local: true, html: { multipart: true } do |form| %>
-    <div class="mb-4">
-      <%= form.label :content, "Posez votre question :", class: "form-label fw-semibold" %>
-      <%= form.text_area :content, class: "form-control shadow-sm", rows: 4, required: true, placeholder: "Exemple : Quel est l’histoire du jersey de 1998 ?" %>
+  <!-- Formulaire en-dehors du fil -->
+  <div class="chat-form mt-4">
+    <% if Rails.env.development? %>
+    <div class="text-end small">
+      Input tokens: <%= @input_tokens %> /
+      Output tokens: <%= @output_tokens %> /
+      Context window: <%= @context_window %>
     </div>
+    <% end %>
 
-    <div class="mb-4">
-      <%= form.label :image, "Charger une image (optionnel)", class: "form-label fw-semibold" %>
-      <%= form.file_field :image, class: "form-control shadow-sm" %>
-    </div>
+    <%= form_with scope: :message, url: [@chat, Message.new], method: :post, local: true, html: { multipart: true } do |form| %>
+      <div class="mb-4">
+        <%= form.label :content, "Posez votre question :", class: "form-label fw-semibold" %>
+        <%= form.text_area :content, class: "form-control shadow-sm", rows: 3, required: true, placeholder: "Exemple : Quel est l’histoire du jersey de 1998 ?" %>
+      </div>
 
-    <div class="d-grid">
-      <%= form.submit "Envoyer", class: "btn btn-dark btn-lg animate-in delay-2" %>
-    </div>
-  <% end %>
+      <div class="mb-4">
+        <%= form.label :image, "Charger une image (optionnel)", class: "form-label fw-semibold" %>
+        <%= form.file_field :image, class: "form-control shadow-sm" %>
+      </div>
+
+      <div class="d-grid">
+        <%= form.submit "Envoyer", class: "btn btn-dark btn-lg animate-in delay-2" %>
+      </div>
+    <% end %>
+  </div>
+
+  <script>
+    document.addEventListener("turbo:load", () => {
+      const lastMessage = document.querySelector(".chat-thread .chat-message:last-child");
+      if (lastMessage) {
+        lastMessage.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  </script>
+
 </div>
-
-<script>
-  document.addEventListener("turbo:load", () => {
-    const lastMessage = document.querySelector(".chat-thread .chat-message:last-child");
-    if (lastMessage) {
-      lastMessage.scrollIntoView({ behavior: "smooth" });
-    }
-  });
-</script>
