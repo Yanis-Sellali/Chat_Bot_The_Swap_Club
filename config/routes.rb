@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  resources :chats do
+  post :generate_ad_from_image, on: :member
+  resources :messages, only: [:create]
+  end
+
   devise_for :users
   root to: "pages#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,4 +19,5 @@ Rails.application.routes.draw do
   resources :chats, only: [:create, :show] do
     resources :messages, only: [:new, :create, :show]
   end
+
 end
