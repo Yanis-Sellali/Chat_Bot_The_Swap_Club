@@ -10,11 +10,12 @@ class JerseysController < ApplicationController
 
   def new
     @jersey = Jersey.new
+     @jersey = Jersey.new(description: params[:description])
   end
 
   def create
     @jersey = Jersey.new(jersey_params)
-    puts "Nom: #{@jersey.name}, Année: #{@jersey.year}"
+
     @jersey.description = RubyLLM.chat.ask("Décris ce jersey de football : #{@jersey.name} #{@jersey.year}").content
 
     if @jersey.save
@@ -22,6 +23,23 @@ class JerseysController < ApplicationController
     else
       render :new
     end
+  end
+
+  def new
+    @jersey = Jersey.new(description: params[:description])
+  end
+
+  def create
+    @jersey = Jersey.new(jersey_params)
+    if @jersey.save
+      redirect_to @jersey, notice: "Annonce créée avec succès !"
+    else
+      render :new
+    end
+  end
+
+  def show
+    @jersey = Jersey.find(params[:id])
   end
 
   private
