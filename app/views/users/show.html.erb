@@ -1,0 +1,14 @@
+<div class="container my-5">
+  <h1 class="mb-4">Bonjour, <%= @user.username || @user.email %> 👋</h1>
+
+  <h3>Mes maillots</h3>
+  <div class="row">
+    <% @jerseys.each do |jersey| %>
+      <div class="col-md-4 mb-4">
+        <%= render partial: "jerseys/jersey_display", locals: { jersey: jersey, mode: :card } %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to "Ajouter un nouveau maillot", new_jersey_path, class: "btn btn-success mt-4" %>
+</div>

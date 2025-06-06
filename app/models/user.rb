@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :jerseys, dependent: :destroy
   has_many :chats, dependent: :destroy
+  has_one_attached :avatar
 end
