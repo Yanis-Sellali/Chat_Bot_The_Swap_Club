@@ -10,7 +10,7 @@
       <div class="col-md-4 mb-4">
         <div class="jersey-card card shadow-sm h-100">
           <% if jersey.image.attached? %>
-            <%= image_tag jersey.image, class: "card-img-top jersey-image" %>
+            <%= cl_image_tag jersey.image.key, class: "card-img-top jersey-image" %>
           <% else %>
             <%= image_tag "https://via.placeholder.com/300x200", class: "card-img-top jersey-image", alt: "Placeholder" %>
           <% end %>

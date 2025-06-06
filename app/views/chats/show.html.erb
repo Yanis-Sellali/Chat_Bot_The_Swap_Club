@@ -31,7 +31,7 @@
             <%= button_to "Créer une annonce",
               generate_ad_from_image_chat_path(message.chat, image_message_id: @chat.messages[index - 1].id),
               method: :post,
-              class: "btn btn-dark btn-lg animate-in delay-2" %>
+              class: "btn btn-dark btn-lg border border-white animate-in delay-2" %>
           </div>
         <% end %>
       </div>
