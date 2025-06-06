@@ -29,7 +29,7 @@ def create
       response = @llm_chat.ask(@message.content)
     end
 
-    Message.create(role: "assistant", content: response.content, chat: @chat)
+    Message.create(role: "assistant", content: response.content, chat: @chat, input_tokens: response.input_tokens, output_tokens: response.output_tokens)
     redirect_to chat_path(@chat)
 
   else
