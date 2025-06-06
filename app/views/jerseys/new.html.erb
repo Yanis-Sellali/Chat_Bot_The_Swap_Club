@@ -1,25 +1,31 @@
-<h1>Ajouter un nouveau maillot</h1>
+<div class="container my-5">
+  <div class="form-card mx-auto p-4 shadow rounded bg-white" style="max-width: 600px;">
+    <h1 class="text-center mb-4">Ajouter un nouveau maillot</h1>
 
-<%= form_with model: @jersey, local: true, data: { turbo: false } do |form| %>
-  <div class="mb-3">
-    <%= form.label :name, "Nom du maillot" %>
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form_with model: @jersey, local: true, data: { turbo: false } do |form| %>
+      <div class="mb-3">
+        <%= form.label :name, "Nom du maillot", class: "form-label fw-semibold" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :year, "Année", class: "form-label fw-semibold" %>
+        <%= form.number_field :year, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :team, "Équipe", class: "form-label fw-semibold" %>
+        <%= form.text_field :team, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :image, "Image du maillot", class: "form-label fw-semibold" %>
+        <%= form.file_field :image, class: "form-control" %>
+      </div>
+
+      <div class="d-grid mt-4">
+        <%= form.submit "Créer le maillot", class: "btn btn-dark btn-lg" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="mb-3">
-    <%= form.label :year, "Année" %>
-    <%= form.number_field :year, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :team, "Équipe" %>
-    <%= form.text_field :team, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :image, "Image du maillot" %>
-    <%= form.file_field :image, class: "form-control" %>
-  </div>
-
-  <%= form.submit "Créer le maillot", class: "btn btn-primary" %>
-<% end %>
+</div>

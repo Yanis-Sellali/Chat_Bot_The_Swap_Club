@@ -1,5 +1,12 @@
+.form-card {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+  animation: fadeInUp 0.6s ease;
+}
+
 .form-label {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
 }
 
@@ -13,10 +20,6 @@
     border-color: #343a40;
     box-shadow: none;
   }
-}
-
-.form-check-label {
-  font-size: 0.9rem;
 }
 
 .btn {

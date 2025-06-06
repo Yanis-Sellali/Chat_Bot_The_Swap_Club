@@ -1,21 +1,25 @@
-<h1>Liste des Maillots</h1>
+<div class="container my-5">
+  <h1 class="mb-4 text-center">Liste des Maillots</h1>
 
-<%= link_to "Ajouter un nouveau maillot", new_jersey_path, class: "btn btn-success mb-3" %>
+  <div class="text-end mb-4">
+    <%= link_to "Ajouter un nouveau maillot", new_jersey_path, class: "btn btn-success" %>
+  </div>
 
-<div class="row">
-  <% @jerseys.each do |jersey| %>
-    <div class="col-md-4 mb-4">
-      <div class="card">
-        <% if jersey.image.attached? %>
-          <%= image_tag jersey.image, class: "card-img-top", style: "height: 300px; object-fit: cover;" %>
-        <% else %>
-          <%= image_tag "https://via.placeholder.com/300x200", class: "card-img-top", alt: "Placeholder" %>
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= jersey.name %> (<%= jersey.year %>)</h5>
-          <%= link_to "Voir le détail", jersey_path(jersey), class: "btn btn-primary" %>
+  <div class="row">
+    <% @jerseys.each do |jersey| %>
+      <div class="col-md-4 mb-4">
+        <div class="jersey-card card shadow-sm h-100">
+          <% if jersey.image.attached? %>
+            <%= image_tag jersey.image, class: "card-img-top jersey-image" %>
+          <% else %>
+            <%= image_tag "https://via.placeholder.com/300x200", class: "card-img-top jersey-image", alt: "Placeholder" %>
+          <% end %>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <h5 class="card-title"><%= jersey.name %> (<%= jersey.year %>)</h5>
+            <%= link_to "Voir le détail", jersey_path(jersey), class: "btn btn-primary mt-3 w-100" %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
