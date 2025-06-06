@@ -7,6 +7,12 @@
     </div>
   <% end %>
 
+  <% if flash[:notice] %>
+    <div class="alert alert-success shadow-sm">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
   <!-- Fil de discussion -->
   <div class="chat-thread mb-5" id="chat-thread">
     <% @chat.messages.each_with_index do |message, index| %>
@@ -35,11 +41,11 @@
   <!-- Formulaire en-dehors du fil -->
   <div class="chat-form mt-4">
     <% if Rails.env.development? %>
-    <div class="text-end small">
-      Input tokens: <%= @input_tokens %> /
-      Output tokens: <%= @output_tokens %> /
-      Context window: <%= @context_window %>
-    </div>
+      <div class="text-end small">
+        Input tokens: <%= @input_tokens %> /
+        Output tokens: <%= @output_tokens %> /
+        Context window: <%= @context_window %>
+      </div>
     <% end %>
 
     <%= form_with scope: :message, url: [@chat, Message.new], method: :post, local: true, html: { multipart: true } do |form| %>
@@ -67,5 +73,4 @@
       }
     });
   </script>
-
 </div>
