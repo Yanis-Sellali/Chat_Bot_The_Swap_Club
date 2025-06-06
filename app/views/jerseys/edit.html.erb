@@ -1,0 +1,54 @@
+<h1>Modifier l'annonce du maillot</h1>
+
+<%= form_with(model: @jersey, local: true, html: { multipart: true }) do |form| %>
+  <% if @jersey.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @jersey.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, "Titre" %><br>
+    <%= form.text_field :title, placeholder: "ex: Maillot PSG 2001", value: @jersey.title %>
+  </div>
+
+  <div>
+    <%= form.label :brand, "Marque" %><br>
+    <%= form.text_field :brand, placeholder: "Nike, Adidas…", value: @jersey.brand %>
+  </div>
+
+  <div>
+    <%= form.label :size, "Taille" %><br>
+    <%= form.text_field :size, placeholder: "M, L, XL…", value: @jersey.size %>
+  </div>
+
+  <div>
+    <%= form.label :condition, "État" %><br>
+    <%= form.text_field :condition, placeholder: "Bon état, Neuf avec étiquette…", value: @jersey.condition %>
+  </div>
+
+  <div>
+    <%= form.label :description, "Description" %><br>
+    <%= form.text_area :description, placeholder: "Décris ton maillot ici…", value: @jersey.description %>
+  </div>
+
+  <div>
+    <%= form.label :image, "Image actuelle" %><br>
+    <% if @jersey.image.attached? %>
+      <%= image_tag @jersey.image.variant(resize_to_limit: [300, 300]) %><br><br>
+    <% else %>
+      <p>Aucune image attachée.</p>
+    <% end %>
+
+    <%= form.label :image, "Changer l’image (optionnel)" %><br>
+    <%= form.file_field :image %>
+  </div>
+
+  <div>
+    <%= form.submit "Publier l’annonce" %>
+  </div>
+<% end %>

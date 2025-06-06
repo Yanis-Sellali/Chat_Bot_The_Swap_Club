@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   end
 
+  post "/generate_ad_from_image", to: "jerseys#generate_from_chat", as: :generate_ad_from_image
+
   get 'teams/index'
 
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  
+
   root to: "pages#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -27,4 +29,6 @@ Rails.application.routes.draw do
     resources :messages, only: [:new, :create, :show]
   end
   resources :teams
+  resources :jerseys
+
 end

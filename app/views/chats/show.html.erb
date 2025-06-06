@@ -21,13 +21,14 @@
         <% end %>
 
         <% if message.role == "assistant" && index.positive? && @chat.messages[index - 1].image.attached? %>
-          <div class="mt-3">
-            <%= button_to "Créer une annonce",
-              generate_ad_from_image_chat_path(message.chat, image_message_id: @chat.messages[index - 1].id),
-              method: :post,
-              class: "btn btn-dark btn-lg animate-in delay-2" %>
-          </div>
-        <% end %>
+  <% previous_message = @chat.messages[index - 1] %>
+  <div class="mt-3">
+    <%= button_to "Créer une annonce",
+      generate_ad_from_image_path(chat_id: message.chat.id, image_message_id: previous_message.id),
+      method: :post,
+      class: "btn btn-dark btn-lg animate-in delay-2" %>
+  </div>
+<% end %>
       </div>
     <% end %>
   </div>
