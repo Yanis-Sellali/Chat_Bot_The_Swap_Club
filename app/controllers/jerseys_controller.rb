@@ -2,11 +2,13 @@ class JerseysController < ApplicationController
 
   def index
     @jerseys = Jersey.with_attached_image.where.not(image: nil)
-    @jerseys = Jersey.where(created_by_ai: true).with_attached_image
+    # @jerseys = Jersey.with_attached_image
+    @jerseys = Jersey.where.not(name: [nil, ""], description: [nil, ""]).with_attached_image
   end
 
   def show
     @jersey = Jersey.find(params[:id])
+
   end
 
   def new
@@ -18,29 +20,12 @@ class JerseysController < ApplicationController
     @jersey = Jersey.new(jersey_params)
 
     @jersey.description = RubyLLM.chat.ask("Décris ce jersey de football : #{@jersey.name} #{@jersey.year}").content
-
+    @jersey.user = current_user
     if @jersey.save
-      redirect_to jersey_path(@jersey)
+      redirect_to jersey_path(@jersey), notice: "Annonce créée avec succès !"
     else
       render :new
     end
-  end
-
-  def new
-    @jersey = Jersey.new(description: params[:description])
-  end
-
-  def create
-    @jersey = Jersey.new(jersey_params)
-    if @jersey.save
-      redirect_to @jersey, notice: "Annonce créée avec succès !"
-    else
-      render :new
-    end
-  end
-
-  def show
-    @jersey = Jersey.find(params[:id])
   end
 
   def auto_create
