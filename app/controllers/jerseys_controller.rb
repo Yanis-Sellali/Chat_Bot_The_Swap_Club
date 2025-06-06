@@ -1,7 +1,8 @@
 class JerseysController < ApplicationController
 
   def index
-    @jerseys = Jersey.all
+    @jerseys = Jersey.with_attached_image.where.not(image: nil)
+    @jerseys = Jersey.where(created_by_ai: true).with_attached_image
   end
 
   def show
@@ -41,6 +42,19 @@ class JerseysController < ApplicationController
   def show
     @jersey = Jersey.find(params[:id])
   end
+
+  def auto_create
+  jersey = Jersey.create!(
+    name: "Maillot IA #{Time.now.to_i}",
+    team: "Real Madrid",
+    flocking: "Vinicius Jr",
+    year: 2022,
+    description: "Ce maillot a été généré automatiquement par l'IA.",
+    image_url: "https://via.placeholder.com/300x200",
+    user: current_user
+  )
+  redirect_to jerseys_path, notice: "Maillot créé automatiquement !"
+end
 
   private
 
